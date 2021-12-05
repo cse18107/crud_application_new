@@ -1,11 +1,11 @@
 import React from "react";
-
+import {Link} from 'react-router-dom';
 function Home() {
   return (
     <div className="mt-5">
       <div className="container">
         <div className="add_btn mt-2">
-          <button className="btn btn-primary">Add data</button>
+          <Link to="/register"><button className="btn btn-primary">Add data</button></Link>
         </div>
 
         <table class="table  mt-4">
