@@ -1,4 +1,7 @@
 import React from "react";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {Link} from 'react-router-dom';
 function Home() {
   return (
@@ -27,9 +30,9 @@ function Home() {
               <td>Web developer</td>
               <td>8240500249</td>
               <td className="d-flex justify-content-between">
-                  <button className="btn btn-success"><i class="fas fa-eye"></i></button>
-                  <button className="btn btn-primary"><i class="fas fa-edit"></i></button>
-                  <button className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  <button className="btn btn-success"><RemoveRedEyeIcon/></button>
+                  <button className="btn btn-primary"><EditIcon/></button>
+                  <button className="btn btn-danger"><DeleteIcon/></button>
               </td>
             </tr>
             <tr>
@@ -39,9 +42,9 @@ function Home() {
               <td>back end developer</td>
               <td>8223423522</td>
               <td className="d-flex justify-content-between">
-                  <button className="btn btn-success"><i class="fas fa-eye"></i></button>
-                  <button className="btn btn-primary"><i class="fas fa-edit"></i></button>
-                  <button className="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              <button className="btn btn-success"><RemoveRedEyeIcon/></button>
+                  <button className="btn btn-primary"><EditIcon/></button>
+                  <button className="btn btn-danger"><DeleteIcon/></button>
               </td>
             </tr>
           </tbody>
