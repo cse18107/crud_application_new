@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 
 
-const Register = () => {
+const Edit = () => {
 
 
   const [inpval,setINP] = useState({
@@ -135,4 +135,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Edit;
