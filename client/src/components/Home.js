@@ -1,14 +1,47 @@
-import React from "react";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Link } from "react-router-dom";
 function Home() {
+  const [getuserdata, setUserdata] = useState([]);
+
+  const getdata = async (e) => {
+   // e.preventDefault();
+
+    const res = await fetch("http://localhost:8003/getdata", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (res.status === 404 || !data) {
+      alert("error");
+      console.log("error");
+    } else {
+      setUserdata(data);
+      console.log("get added");
+    }
+  };
+
+    var count=1;
+  useEffect(() => {
+    getdata();
+    count=1;
+  }, []);
+
   return (
     <div className="mt-5">
       <div className="container">
         <div className="add_btn mt-2">
-          <Link to="/register"><button className="btn btn-primary">Add data</button></Link>
+          <Link to="/register">
+            <button className="btn btn-primary">Add data</button>
+          </Link>
         </div>
 
         <table class="table  mt-4">
@@ -23,30 +56,27 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Saikat</td>
-              <td>Saikat@gmail.com</td>
-              <td>Web developer</td>
-              <td>8240500249</td>
+        {   getuserdata.map((user)=>{
+          return  <tr>
+              <th scope="row">{count++}</th>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.work}</td>
+              <td>{user.mobile}</td>
               <td className="d-flex justify-content-between">
-                  <button className="btn btn-success"><RemoveRedEyeIcon/></button>
-                  <button className="btn btn-primary"><EditIcon/></button>
-                  <button className="btn btn-danger"><DeleteIcon/></button>
+                <button className="btn btn-success">
+                  <RemoveRedEyeIcon />
+                </button>
+                <button className="btn btn-primary">
+                  <EditIcon />
+                </button>
+                <button className="btn btn-danger">
+                  <DeleteIcon />
+                </button>
               </td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Soumodeep</td>
-              <td>Soumodeep@gmail.com</td>
-              <td>back end developer</td>
-              <td>8223423522</td>
-              <td className="d-flex justify-content-between">
-              <button className="btn btn-success"><RemoveRedEyeIcon/></button>
-                  <button className="btn btn-primary"><EditIcon/></button>
-                  <button className="btn btn-danger"><DeleteIcon/></button>
-              </td>
-            </tr>
+        }) }
+            
           </tbody>
         </table>
       </div>

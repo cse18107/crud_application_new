@@ -26,7 +26,37 @@ const Register = () => {
         }
       })
   }
-  console.log(inpval)
+  
+
+  const addinpdata = async (e) =>{
+    e.preventDefault()
+
+    const {name,email,work,add,mobile,desc,age} = inpval;
+
+    const res = await fetch("http://localhost:8003/register",{
+      method:"POST",
+      body:JSON.stringify({
+        name,email,work,add,mobile,desc,age
+      }),
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if(res.status===404||!data){
+      alert("error");
+      console.log("error");
+    }else{
+      alert("data added");
+      console.log("data added")
+    }
+  }
+
 
   return (
     <div className="container">
@@ -126,7 +156,7 @@ const Register = () => {
               rows="5"
             ></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" onClick={addinpdata} class="btn btn-primary">
             Submit
           </button>
         </div>
