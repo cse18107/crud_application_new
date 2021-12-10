@@ -14,7 +14,7 @@ router.post("/register",async(req,res)=>{
     const {name,email,age,mobile,work,add,desc} = req.body;
 
     if(!name||!email||!age||!mobile||!work||!add||!desc){
-        res.status(404).json("plz fill the data");
+        res.status(422).json("plz fill the data");
     }
 
     try{
@@ -23,7 +23,7 @@ router.post("/register",async(req,res)=>{
         console.log(preuser);
 
         if(preuser){
-            res.status(404).json("this user is already present");
+            res.status(422).json("this user is already present");
         }else{
             const adduser = new users({
                 name,email,age,mobile,work,add,desc
@@ -36,22 +36,39 @@ router.post("/register",async(req,res)=>{
 
 
     }catch(err){
-        res.status(404).json(err);
+        res.status(422).json(err);
     }
 
 })
 
 
-// get userdata
+// get userData
 
 router.get("/getdata",async(req,res)=>{
     try{
         const userdata = await users.find();
         
-        console.log("userdata"+userdata);
+        // console.log("userdata"+userdata);
         res.status(201).send(userdata);
     }catch(error){
-        res.status(404).json(error);
+        res.status(422).json(error);
+    }
+})
+
+// get individual user
+
+router.get("/getuser/:id",async(req,res)=>{
+    try{
+        console.log(req.params);
+        const {id} = req.params;
+        
+        const userindividual = await users.findById({_id:id});
+
+        console.log(userindividual);
+        res.status(201).json(userindividual);
+    }catch(error){
+        res.status(422).json(error);
+
     }
 })
 

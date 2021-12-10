@@ -3,13 +3,14 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 function Home() {
   const [getuserdata, setUserdata] = useState([]);
 
   const getdata = async (e) => {
    // e.preventDefault();
 
-    const res = await fetch("http://localhost:8003/getdata", {
+    const res = await fetch("/getdata", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +21,7 @@ function Home() {
     const data = await res.json();
     console.log(data);
 
-    if (res.status === 404 || !data) {
+    if (res.status === 422 || !data) {
       alert("error");
       console.log("error");
     } else {
@@ -64,9 +65,9 @@ function Home() {
               <td>{user.work}</td>
               <td>{user.mobile}</td>
               <td className="d-flex justify-content-between">
-                <button className="btn btn-success">
+                <NavLink to={`view/${user._id}`}><button className="btn btn-success">
                   <RemoveRedEyeIcon />
-                </button>
+                </button></NavLink>
                 <button className="btn btn-primary">
                   <EditIcon />
                 </button>
