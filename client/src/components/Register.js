@@ -63,8 +63,8 @@ const Register = () => {
       <NavLink to="/">Home</NavLink>
       <form className="mt-4">
         <div className="row">
-          <div class="mb-3 col-lg-6 col-md-6 col-12">
-            <label for="exampleInputEmail1" class="form-label">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label for="exampleInputEmail1" className="form-label">
               Name
             </label>
             <input
@@ -72,13 +72,13 @@ const Register = () => {
               name="name"
               value={inpval.name}
               onChange={setdata}
-              class="form-control"
+              className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
           </div>
-          <div class="mb-3 col-lg-6 col-md-6 col-12">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label for="exampleInputPassword1" className="form-label">
               Email
             </label>
             <input
@@ -86,12 +86,12 @@ const Register = () => {
               name="email"
               value={inpval.email}
               onChange={setdata}
-              class="form-control"
+              className="form-control"
               id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3 col-lg-6 col-md-6 col-12">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label for="exampleInputPassword1" className="form-label">
               Age
             </label>
             <input
@@ -99,12 +99,12 @@ const Register = () => {
               name="age"
               value={inpval.age}
               onChange={setdata}
-              class="form-control"
+              className="form-control"
               id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3 col-lg-6 col-md-6 col-12">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label for="exampleInputPassword1" className="form-label">
               Mobile
             </label>
             <input
@@ -112,12 +112,12 @@ const Register = () => {
               name="mobile"
               value={inpval.mobile}
               onChange={setdata}
-              class="form-control"
+              className="form-control"
               id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3 col-lg-6 col-md-6 col-12">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label for="exampleInputPassword1" className="form-label">
               Work
             </label>
             <input
@@ -125,12 +125,12 @@ const Register = () => {
               name="work"
               value={inpval.work}
               onChange={setdata}
-              class="form-control"
+              className="form-control"
               id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3 col-lg-6 col-md-6 col-12">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label for="exampleInputPassword1" className="form-label">
               Address
             </label>
             <input
@@ -138,12 +138,12 @@ const Register = () => {
               name="add"
               value={inpval.add}
               onChange={setdata}
-              class="form-control"
+              className="form-control"
               id="exampleInputPassword1"
             />
           </div>
-          <div class="mb-3 col-lg-12 col-md-12 col-12">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3 col-lg-12 col-md-12 col-12">
+            <label for="exampleInputPassword1" className="form-label">
               Description
             </label>
             <textarea
@@ -156,7 +156,7 @@ const Register = () => {
               rows="5"
             ></textarea>
           </div>
-          <button type="submit" onClick={addinpdata} class="btn btn-primary">
+          <button type="submit" onClick={addinpdata} className="btn btn-primary">
             Submit
           </button>
         </div>

@@ -45,7 +45,7 @@ function Home() {
           </Link>
         </div>
 
-        <table class="table  mt-4">
+        <table className="table  mt-4">
           <thead>
             <tr className="table-dark">
               <th scope="col">id</th>
@@ -68,9 +68,9 @@ function Home() {
                 <NavLink to={`view/${user._id}`}><button className="btn btn-success">
                   <RemoveRedEyeIcon />
                 </button></NavLink>
-                <button className="btn btn-primary">
+                <NavLink to={`edit/${user._id}`}><button className="btn btn-primary">
                   <EditIcon />
-                </button>
+                </button></NavLink>
                 <button className="btn btn-danger">
                   <DeleteIcon />
                 </button>

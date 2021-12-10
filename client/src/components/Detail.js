@@ -14,9 +14,14 @@ import { useParams } from "react-router-dom";
 
 function Detail() {
 
-  const {id} = useParams("");
+
 
   const [getuserdata, setUserdata] = useState([]);
+  
+  
+  const {id} = useParams("");
+
+  
 
 
   const getdata = async (e) => {

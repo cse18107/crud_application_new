@@ -7,8 +7,9 @@ const users= require("../models/userSchema");
 // });
 
 
-// register user
 
+
+// register user
 router.post("/register",async(req,res)=>{
     //console.log(req.body);
     const {name,email,age,mobile,work,add,desc} = req.body;
@@ -42,8 +43,8 @@ router.post("/register",async(req,res)=>{
 })
 
 
-// get userData
 
+// get userData
 router.get("/getdata",async(req,res)=>{
     try{
         const userdata = await users.find();
@@ -55,8 +56,9 @@ router.get("/getdata",async(req,res)=>{
     }
 })
 
-// get individual user
 
+
+// get individual user
 router.get("/getuser/:id",async(req,res)=>{
     try{
         console.log(req.params);
@@ -69,6 +71,40 @@ router.get("/getuser/:id",async(req,res)=>{
     }catch(error){
         res.status(422).json(error);
 
+    }
+});
+
+
+
+// update user data
+router.patch("/updateuser/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+
+        const updateduser = await users.findByIdAndUpdate(id,req.body,{
+            new:true
+        });
+
+        console.log(updateduser);
+        res.status(201).json(updateduser);
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+});
+
+
+// delete user
+router.delete("/deleteuser/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+
+        const deletuser = await users.findByIdAndDelete({_id:id})
+        console.log(deletuser);
+        res.status(201).json(deletuser);
+
+    } catch (error) {
+        res.status(422).json(error);
     }
 })
 
