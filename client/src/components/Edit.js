@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
+import { updatedata } from "./context/ContextProvider";
 const Edit = () => {
   const [getuserdata, setUserdata] = useState([]);
+
+  const {updata,setUPdata} = useContext(updatedata);
+
 
   const [inpval, setINP] = useState({
     name: "",
@@ -79,7 +82,7 @@ const Edit = () => {
     if (res2.status === 422 || !data2) {
       alert("fill data");
     } else {
-      
+      setUPdata(data2);
       alert("data added ");
     }
   };

@@ -1,62 +1,71 @@
-import React,{useState} from "react";
-import { NavLink } from "react-router-dom";
-
+import React, { useState,useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { adddata } from './context/ContextProvider';
 
 
 const Register = () => {
 
+  const {udata,setUdata} = useContext(adddata);
 
-  const [inpval,setINP] = useState({
-    name:"",
-    email:"",
-    age:"",
-    mobile:"",
-    work:"",
-    add:"",
-    desc:""
+
+  const navigate = useNavigate();
+
+  const [inpval, setINP] = useState({
+    name: "",
+    email: "",
+    age: "",
+    mobile: "",
+    work: "",
+    add: "",
+    desc: "",
   });
 
-  const setdata=(e)=>{
-      console.log(e.target.value);
-      const {name,value} = e.target;
-      setINP((preval)=>{
-        return {
-          ...preval,
-          [name]:value
-        }
-      })
-  }
-  
+  const setdata = (e) => {
+    console.log(e.target.value);
+    const { name, value } = e.target;
+    setINP((preval) => {
+      return {
+        ...preval,
+        [name]: value,
+      };
+    });
+  };
 
-  const addinpdata = async (e) =>{
-    e.preventDefault()
+  const addinpdata = async (e) => {
+    e.preventDefault();
 
-    const {name,email,work,add,mobile,desc,age} = inpval;
+    const { name, email, work, add, mobile, desc, age } = inpval;
 
-    const res = await fetch("http://localhost:8003/register",{
-      method:"POST",
-      body:JSON.stringify({
-        name,email,work,add,mobile,desc,age
+    const res = await fetch("http://localhost:8003/register", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        email,
+        work,
+        add,
+        mobile,
+        desc,
+        age,
       }),
-      headers:{
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
-
     });
 
     const data = await res.json();
     console.log(data);
 
-    if(res.status===422||!data){
+    if (res.status === 422 || !data) {
       alert("error");
       console.log("error");
-    }else{
-      alert("data added");
-      console.log("data added")
+    } else {
+      //alert("data added");
+      //console.log("data added");
+      setUdata(data);
+      navigate("/");
     }
-  }
-
+  };
 
   return (
     <div className="container">
@@ -156,7 +165,11 @@ const Register = () => {
               rows="5"
             ></textarea>
           </div>
-          <button type="submit" onClick={addinpdata} className="btn btn-primary">
+          <button
+            type="submit"
+            onClick={addinpdata}
+            className="btn btn-primary"
+          >
             Submit
           </button>
         </div>

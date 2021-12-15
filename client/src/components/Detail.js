@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import Card from "@mui/material/Card";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MobileFriendlyIcon from "@mui/icons-material/MobileFriendly";
@@ -9,13 +9,19 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import profile from "../img/account.png";
 import { useParams } from "react-router-dom";
-import { NavLink,useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import {deldata} from './context/ContextProvider';
+
 
 function Detail() {
   const [getuserdata, setUserdata] = useState([]);
+  const {dltdata,setDLTdata} = useContext(deldata);
 
   const { id } = useParams("");
-  
+
+
+  const navigate  = useNavigate();
+
 
   const getdata = async (e) => {
     // e.preventDefault();
@@ -43,9 +49,25 @@ function Detail() {
     getdata();
   }, []);
 
-  console.log(getuserdata);
+  
+  const deleteuser =async(id)=>{
+    const res2 = await fetch(`/deleteuser/${id}`,{
+      method:'DELETE',
+      headers:{
+        'Content-Type':"application/json"
+      }
+    });
+    const deletedata = await res2.json();
+    console.log(deletedata);
 
-
+    if(res2.status===422 || !deletedata){
+      console.log("error");
+    }else{
+      console.log("user deleted");
+      setDLTdata(deletedata);
+      navigate("/");
+    }
+  }
 
 
 
@@ -56,10 +78,13 @@ function Detail() {
       <Card sx={{ maxWidth: 600 }}>
         <CardContent>
           <div className="add_btn">
-          <NavLink to={`/edit/${getuserdata._id}`}> <button className="btn btn-primary mx-4">
-              <EditIcon />
-            </button></NavLink>
-            <button  className="btn btn-danger">
+            <NavLink to={`/edit/${getuserdata._id}`}>
+              
+              <button className="btn btn-primary mx-4">
+                <EditIcon />
+              </button>
+            </NavLink>
+            <button className="btn btn-danger" onClick={()=>deleteuser(getuserdata._id)}>
               <DeleteIcon />
             </button>
           </div>
@@ -67,7 +92,7 @@ function Detail() {
             <div className="left_view col-lg-6 col-md-6 col-12">
               <img alt="profile" style={{ width: "50px" }} src={profile} />
               <h3 className="mt-3">
-                Name:{" "}
+                Name:
                 <span style={{ fontWeight: 400 }}>{getuserdata.name}</span>
               </h3>
               <h3 className="mt-3">
